@@ -1,0 +1,36 @@
+﻿@model IEnumerable<LoclaPista.Models.ComposicaoCorrida>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Detalhes dos Participantes</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Placa
+        </th>
+        <th>
+            Cpf
+        </th>
+       
+    </tr>
+
+ @foreach (var item in Model)
+ {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.c.placa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.p.Cpf)
+        </td>      
+    </tr>
+ }
+
+</table>
+<p>
+    @Html.ActionLink("Voltar", "Index", "Adm")
+</p>

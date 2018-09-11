@@ -1,0 +1,48 @@
+﻿@model LoclaPista.Models.Corrida
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+<h3>Cancelar Corrida?</h3>
+<div>
+    <h4>Corrida</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DtaCadastro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DtaCadastro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DtaCorrida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DtaCorrida)
+        </dd>
+     
+        <dt>
+            @Html.DisplayNameFor(model => model.Preco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Preco)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Cancelar", "Index","Adm")
+        </div>
+    }
+</div>

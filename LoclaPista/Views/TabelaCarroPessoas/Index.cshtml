@@ -1,0 +1,54 @@
+﻿@model IEnumerable<LoclaPista.Models.TabelaCarroPessoa>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Meus Carros</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.dtaCadastro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c.placa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c.marca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c.modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c.cor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtaCadastro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.c.placa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.c.marca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.c.modelo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.c.cor)
+        </td>
+        <td>
+
+            @Html.ActionLink("Não uso mais esse carro", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

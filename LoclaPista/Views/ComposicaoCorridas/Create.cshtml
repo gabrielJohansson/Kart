@@ -1,0 +1,126 @@
+﻿
+@using LoclaPista.Models
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    List<TabelaCarroPessoa> t = ViewBag.CarroPessoa;
+    List<Pista> p = ViewBag.Pista;
+    List<Pagamento> pag = ViewBag.Pagamento;
+    DateTime[] dias = new DateTime[] { DateTime.Today.Date, DateTime.Today.Date.AddDays(1), DateTime.Today.Date.AddDays(2), DateTime.Today.Date.AddDays(3), DateTime.Today.Date.AddDays(4), DateTime.Today.Date.AddDays(5), DateTime.Today.Date.AddDays(6) };
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ComposicaoCorrida</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+        <div class="col-md-10">         
+            <div class="row">
+
+                <div class="col-md-8">
+                    Escolha os Participantes/Carros:
+                    @Html.DropDownList("carroid", new SelectList(t, "Id", "Concat"))
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+
+                <div class="col-md-8">
+                    Escolha os Participantes/Carros:
+                    @Html.DropDownList("carroid2", new SelectList(t, "Id", "Concat"))
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+
+                <div class="col-md-8">
+                    Escolha os Participantes/Carros:
+                    @Html.DropDownList("carroid3", new SelectList(t, "Id", "Concat"))
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+
+                <div class="col-md-8">
+                    Escolha os Participantes/Carros:
+                    @Html.DropDownList("carroid4", new SelectList(t, "Id", "Concat"))
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+
+                <div class="col-md-8">
+                    Escolha a Pista:
+                    @Html.DropDownList("pistaid", new SelectList(p, "Id", "Nome"))
+
+                </div>
+
+            </div>
+
+        </div>      
+
+        <div class="col-md-10">
+            <div class="row">
+
+                <div class="col-md-8">
+                    Escolha a Forma de Pagamento:
+                    @Html.DropDownList("pagamentoid", new SelectList(pag, "Id", "pagamento"))
+
+                </div>
+
+            </div>
+
+        </div>      
+
+        <div class="col-md-10">
+                  
+            Escolha a Data(Futura):     
+            @Html.TextBox("data", "(dd/mm/yyyy)", new { @class = "date-picker" })
+           
+
+
+        </div>      
+        <div class="col-md-10">
+
+            Escolha a Horario(das 8:00 as 18:00):
+            @Html.TextBox("hora", "(hh:mm)", new { @class = "date-picker" })
+
+
+
+        </div>     
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

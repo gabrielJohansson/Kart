@@ -1,0 +1,58 @@
+﻿@model LoclaPista.Models.TabelaCarroPessoa
+@using LoclaPista.Models
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    List<Carro>c = ViewBag.Carro;
+    List<Pessoa> p = ViewBag.Pessoa;
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>TabelaCarroPessoa</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+
+            <div class="col-md-10">
+                @*dropdown coms carros*@
+                @*@Html.EditorFor(model => model.dtaCadastro, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dtaCadastro, "", new { @class = "text-danger" })*@
+                <div class="row">
+                    
+                    <div class="col-md-8">        
+                        Escolha o Carro:
+                        @Html.DropDownList("carroid", new SelectList(c, "Id", "placa"))
+                        
+                    </div>
+                    
+                </div>
+
+            </div>
+            @*@Html.LabelFor(model => model.p.Id, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                <div class="col-md-8">
+                    Escolha o Cliente:
+
+                    @Html.DropDownList("pessoaid", new SelectList(p, "Id", "Cpf"))
+                    </div>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Cancelar", "Index","Home")
+</div>

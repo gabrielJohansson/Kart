@@ -1,0 +1,54 @@
+﻿@model IEnumerable<LoclaPista.Models.Corrida>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Cancelamento de Corrida</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DtaCadastro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DtaCorrida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DtaCancelamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pagamento.pagamento)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DtaCadastro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DtaCorrida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DtaCancelamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Preco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pagamento.pagamento)
+        </td>
+        <td>
+            @Html.ActionLink("Cancelar Corrida", "Delete", new { id=item.Id }) |
+
+        </td>
+    </tr>
+}
+
+</table>

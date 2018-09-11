@@ -1,0 +1,98 @@
+﻿@model IEnumerable<LoclaPista.Models.HorarioPista>
+@using LoclaPista.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    Tempo t = ViewBag.Tempo;
+    DateTime[] dias = new DateTime[] { DateTime.Today.Date, DateTime.Today.Date.AddDays(1), DateTime.Today.Date.AddDays(2), DateTime.Today.Date.AddDays(3), DateTime.Today.Date.AddDays(4), DateTime.Today.Date.AddDays(5), DateTime.Today.Date.AddDays(6) };
+}
+
+<h2>DIAS DISPONÍVEIS</h2>
+
+<div id="dia" style="text-align:center;width:100%">
+    <ul class="pagination pagination-lg">
+
+        @for (int i = 0; i < 7; i++)
+        {
+            <li class="page-item">
+                @Html.ActionLink(dias[i].ToString("dd/MM/yyyy"), "Index", "Home", new { id = i }, new { @class = "page-link" })
+            </li>
+        }
+    </ul>
+</div>
+
+<h2>HORÁRIOS OCUPADOS</h2>
+<table class="table">
+    <tr>
+        <th>
+            Hora de Inicio
+        </th>
+        <th>
+            Hora do Fim
+        </th>
+        <th>
+            Nome da Pista
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hora_inicial.TimeOfDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hora_Final.TimeOfDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pista.Nome)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h2>PREVISÃO DO TEMPO</h2>
+<table class="table">
+    <tr>
+        <th>
+            Dia
+        </th>
+        <th>
+            Previsao
+        </th>
+        <th>
+           Maxima
+        </th>
+        <th>
+            Mínima
+        </th>
+        <th>
+            Irradiação Solar
+        </th>
+    </tr>
+
+   @for (int i = 0; i < t.previsao.Count; i++)
+   {
+    <tr>
+        <td>
+            @t.previsao[i].dia
+        </td>
+        <td>
+            @t.previsao[i].tempo
+        </td>
+        <td>
+            @t.previsao[i].maxima
+        </td>
+        <td>
+            @t.previsao[i].minima
+        </td>
+        <td>
+            @t.previsao[i].iuv
+        </td>
+    </tr>
+   }
+  
+</table>
+

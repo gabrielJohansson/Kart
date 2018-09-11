@@ -1,0 +1,250 @@
+﻿@model IEnumerable<LoclaPista.Models.Pagamento>
+@using LoclaPista.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    List<Pessoa>p = ViewBag.Clientes;
+    List<Carro> c = ViewBag.Carros;
+    List<Pista> pi = ViewBag.Pistas;
+    List<Corrida> cor = ViewBag.Corridas;
+    List<TabelaCarroPessoa> cp = ViewBag.CarroPessoa;
+    List<HorarioPista> hp = ViewBag.Horario;
+
+}
+
+<h1>Detalhes</h1>
+<h2>Clientes</h2>
+<table class="table">
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th>
+            Cpf
+        </th>
+        <th>
+            Data Cadastro
+        </th>
+        <th>
+           Status
+        </th>
+    </tr>
+
+    @for (int i = 0; i < p.Count; i++)
+    {
+        <tr>
+            <td>
+                @p[i].Nome
+            </td>
+            <td>
+                @p[i].Cpf
+            </td>
+            <td>
+                @p[i].dtaCadastro
+            </td>
+            <td>
+                @p[i].Status
+            </td>
+        </tr>
+    }
+
+</table>
+<h2>Carros</h2>
+<table class="table">
+    <tr>
+        <th>
+            Placa
+        </th>
+        <th>
+            Modelo
+        </th>
+        <th>
+            Marca
+        </th>
+        <th>
+            Cor
+        </th>
+    </tr>
+
+    @for (int i = 0; i < c.Count; i++)
+    {
+        <tr>
+            <td>
+                @c[i].placa
+            </td>
+            <td>
+                @c[i].modelo
+            </td>
+            <td>
+                @c[i].marca
+            </td>
+            <td>
+                @c[i].cor
+            </td>
+        </tr>
+    }
+
+</table>
+<h2>Pistas</h2>
+<table class="table">
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th>
+           Data de Cadastro
+        </th>
+        <th>
+            Status
+        </th>
+    </tr>
+
+    @for (int i = 0; i < pi.Count; i++)
+    {
+        <tr>
+            <td>
+                @pi[i].Nome
+            </td>
+            <td>
+                @pi[i].dtaCadastro
+            </td>
+            <td>
+                @pi[i].Ativo
+            </td>
+        </tr>
+    }
+
+</table>
+<h2>Corridas</h2>
+<table class="table">
+    <tr>
+        <th>
+            Nome do Responsável
+        </th>
+        <th>
+            Pista
+        </th>
+        <th>
+            Preço
+        </th>
+        <th>
+            Data de Aluguel
+        </th>
+        <th>
+            Data da Corrida
+        </th>
+        <th>
+            Meio de Pagamento
+        </th>
+        <th></th>
+    </tr>
+
+    @for (int i = 0; i < cor.Count; i++)
+    {
+        <tr>
+            <td>
+                @cor[i].Responsavel.Nome
+            </td>
+            <td>
+                @cor[i].Pista.Nome
+            </td>
+            <td>
+                @cor[i].Preco
+            </td>
+            <td>
+                @cor[i].DtaCadastro
+            </td>
+            <td>
+                @cor[i].DtaCorrida
+            </td>
+            <td>
+                @cor[i].pagamento.pagamento
+            </td>
+            <td>
+                @Html.ActionLink("Ver Composição", "Details", new { id = cor[i].Id})               
+            </td>
+        </tr>
+    }
+
+</table>
+<h2>Carro Pessoa</h2>
+<table class="table">
+    <tr>
+        <th>
+            Cpf Pessoa
+        </th>
+        <th>
+            Placa Carro
+        </th>
+        <th>
+            Data Cadastro
+        </th>   
+    </tr>
+
+    @for (int i = 0; i < cp.Count; i++)
+    {
+        <tr>
+            <td>
+                @cp[i].p.Cpf
+            </td>
+            <td>
+                @cp[i].c.placa
+            </td>
+            <td>
+                @cp[i].dtaCadastro
+            </td>
+        </tr>
+    }
+
+</table>
+<h2>Horario Pista</h2>
+<table class="table">
+    <tr>
+        <th>
+            Pista
+        </th>
+        <th>
+            Inicio da Corrida
+        </th>
+        <th>
+            Fim da Corrida
+        </th>
+    </tr>
+
+    @for (int i = 0; i < hp.Count; i++)
+    {
+        <tr>
+            <td>
+                @hp[i].pista.Nome
+            </td>
+            <td>
+                @hp[i].Hora_inicial
+            </td>
+            <td>
+                @hp[i].Hora_Final
+            </td>
+        </tr>
+    }
+
+</table>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pagamento)
+        </th>
+       
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.pagamento)
+            </td>
+          
+        </tr>
+    }
+
+</table>
+

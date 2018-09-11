@@ -1,0 +1,83 @@
+﻿@model IEnumerable<LoclaPista.Models.Corrida>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Minha Página</h2>
+
+<div id="dia" style="text-align:center;width:100%">
+    <ul class="pagination pagination-lg">
+
+
+        <li class="page-item">
+            @Html.ActionLink("Editar Dados", "Edit", "Pessoas", new { id = Convert.ToInt32(HttpContext.Current.User.Identity.Name.Split('|')[1]) }, new { @class = "page-link" })
+
+        </li>
+
+    </ul>
+</div>
+<div id="dia2" style="text-align:center;width:100%">
+    <ul class="pagination pagination-lg">
+
+
+        <li class="page-item">
+            @Html.ActionLink("Meus Carros", "Index", "TabelaCarroPessoas", new { id = Convert.ToInt32(HttpContext.Current.User.Identity.Name.Split('|')[1]) }, new { @class = "page-link" })
+
+        </li>
+
+    </ul>
+</div>
+
+<h2>Corridas</h2>
+<table class="table">
+    <tr>
+        <th>
+            Nome do Responsável
+        </th>
+        <th>
+            Pista
+        </th>
+        <th>
+            Preço
+        </th>
+        <th>
+            Data de Aluguel
+        </th>
+        <th>
+            Data da Corrida
+        </th>
+        <th>
+            Meio de Pagamento
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Responsavel.Nome
+            </td>
+            <td>
+                @item.Pista.Nome
+            </td>
+            <td>
+                @item.Preco
+            </td>
+            <td>
+                @item.DtaCadastro
+            </td>
+            <td>
+                @item.DtaCorrida
+            </td>   
+            <td>
+                @item.pagamento.pagamento
+            </td>    
+        </tr>
+    }
+
+    </table>
+
+
