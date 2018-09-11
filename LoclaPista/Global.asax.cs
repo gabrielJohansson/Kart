@@ -10,7 +10,8 @@ namespace LoclaPista
     {
         void Application_Start(object sender, EventArgs e)
         {
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+            //Registro da API,Nao é necessário...
+           // GlobalConfiguration.Configure(WebApiConfig.Register);
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
            
