@@ -34,9 +34,11 @@
             minTime: '08:00',
             maxTime: '18:00',
             yearRange: "-100:+1",
-            dateFormat: 'dd-M-yy',
+            //dateFormat: 'dd-MM-yy',
             controlType: 'select',
-            timeFormat: 'hh:mm TT',          
+            dateFormat: 'dd/mm/yy',
+            timeFormat: 'hh:mm',
+            //timeFormat: 'hh:mm TT',          
         });
     })
 </script>
@@ -132,16 +134,7 @@
                   
             Escolha a Data(Futura):     
             @Html.TextBox("data", "", new { @class = "date-picker" })
-
-        </div>      
-        <div class="col-md-10">
-
-            Escolha a Horario(das 8:00 as 18:00):
-            @Html.TextBox("hora", "(hh:mm)", new { @class = "date-picker" })
-
-
-
-        </div>     
+     
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
