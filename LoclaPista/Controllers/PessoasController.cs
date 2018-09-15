@@ -139,6 +139,7 @@ namespace LoclaPista.Controllers
         [HttpPost]
         public ActionResult Login(Pessoa u)
         {
+            u.Cpf = Utils.Utilidades.RemoveNaoNumericos(u.Cpf);
             u = PessoasDAO.Login(u);
             if (u != null)
             {

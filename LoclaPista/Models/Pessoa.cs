@@ -1,9 +1,11 @@
-﻿using System;
+﻿using LoclaPista.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace LoclaPista.Models
 {
@@ -26,6 +28,7 @@ namespace LoclaPista.Models
         public string Senha { get; set; }
         //será o login,portanto vai ser único   fazer msg para validação de cpf
         [Required(ErrorMessage = "Campo obrigatório!")]
+        [ValidacaoCPF(ErrorMessage = "CPF inválido")]
         [Display(Name = "CPF")]
         public string Cpf { get; set; }
         public DateTime dtaCadastro { get; set; }

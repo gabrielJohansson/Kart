@@ -3,14 +3,31 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/Layout.cshtml";
+
 }
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.maskedinput.js"></script>
+<script src="~/Scripts/jquery.maskedinput.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $("#Cpf").mask("999.999.999-99");
+
+    });
+</script>
+
 
 <h2>Nova Conta</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Pessoa</h4>
         <hr />
@@ -45,5 +62,5 @@
 }
 
 <div>
-    @Html.ActionLink("Cancelar", "Index","Home")
+    @Html.ActionLink("Cancelar", "Index", "Home")
 </div>

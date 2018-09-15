@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -250,6 +251,15 @@
     <Content Include="Scripts\jquery-ui-sliderAccess.js" />
     <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
     <Content Include="Scripts\jquery-ui-timepicker-addon.min.js" />
+    <Content Include="Scripts\jquery.maskedinput.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.ar.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.az.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.bg.min.js" />
@@ -360,6 +370,10 @@
     <Compile Include="Migrations\201804261156201_pagamento.Designer.cs">
       <DependentUpon>201804261156201_pagamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809151823004_requiredcar.cs" />
+    <Compile Include="Migrations\201809151823004_requiredcar.Designer.cs">
+      <DependentUpon>201809151823004_requiredcar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Carro.cs" />
     <Compile Include="Models\ComposicaoCorrida.cs" />
@@ -373,7 +387,9 @@
     <Compile Include="Models\TabelaCarroPessoa.cs" />
     <Compile Include="Models\Tempo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Utilidades.cs" />
     <Compile Include="Utils\UtilidadeXML.cs" />
+    <Compile Include="Utils\ValidacaoCPF.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -442,6 +458,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804261156201_pagamento.resx">
       <DependentUpon>201804261156201_pagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809151823004_requiredcar.resx">
+      <DependentUpon>201809151823004_requiredcar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

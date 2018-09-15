@@ -4,13 +4,25 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.maskedinput.js"></script>
+<script src="~/Scripts/jquery.maskedinput.min.js"></script>
 
+<script>
+    $(document).ready(function () {
+        $.mask.definitions["A"] = "[a-zA-Z]";
+        $("#placa").mask("AAA-9999");
+
+    });
+</script>
 <h2>Adicionar Carro Novo</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Carro</h4>
         <hr />
@@ -56,5 +68,5 @@
 }
 
 <div>
-    @Html.ActionLink("Cancelar", "Index","Pessoas")
+    @Html.ActionLink("Cancelar", "Index", "Pessoas")
 </div>

@@ -3,7 +3,19 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.maskedinput.js"></script>
+<script src="~/Scripts/jquery.maskedinput.min.js"></script>
 
+<script>
+    $(document).ready(function () {
+
+        $("#Cpf").mask("999.999.999-99");
+
+    });
+</script>
 <h2>Login</h2>
 
 @using (Html.BeginForm())
@@ -34,9 +46,9 @@
 
         <div class="form-group">
             <ul class="col-md-offset-2 col-md-10">
-                    <li class="page-item">
-                        @Html.ActionLink("Criar Conta", "Create", "Pessoas", new { @class = "page-link" })
-                    </li>  
+                <li class="page-item">
+                    @Html.ActionLink("Criar Conta", "Create", "Pessoas", new { @class = "page-link" })
+                </li>
             </ul>
         </div>
 
