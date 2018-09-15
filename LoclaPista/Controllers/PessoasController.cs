@@ -54,6 +54,8 @@ namespace LoclaPista.Controllers
             pessoa.Status = 1;
             if (ModelState.IsValid)
             {
+                pessoa.Cpf = Utils.Utilidades.RemoveNaoNumericos(pessoa.Cpf);
+               
                 Pessoa teste = PessoasDAO.ProcurarbyCpf(pessoa.Cpf);
                 if (teste == null)
                 {
