@@ -21,9 +21,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Preco)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.pagamento.pagamento)
-        </th>
+       
         <th></th>
     </tr>
 
@@ -41,9 +39,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Preco)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pagamento.pagamento)
-        </td>
+       
         <td>
             @Html.ActionLink("Cancelar Corrida", "Delete", new { id=item.Id }) |
 

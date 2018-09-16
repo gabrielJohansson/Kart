@@ -23,7 +23,7 @@ namespace LoclaPista.Controllers
             ViewBag.CarroPessoa = CarroPessoaDao.ListarTodos();
             ViewBag.Horario = HorarioPistaDAO.ListarTodos();
 
-            return View(PagamentoDAO.ListarTodos());
+            return View();
         }
 
 

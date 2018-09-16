@@ -341,7 +341,7 @@
     <Compile Include="Controllers\CorridasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HorarioPistasController.cs" />
-    <Compile Include="Controllers\PagamentoesController.cs" />
+    <Compile Include="Controllers\LojasController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
     <Compile Include="Controllers\PistasController.cs" />
     <Compile Include="Controllers\TabelaCarroPessoasController.cs" />
@@ -351,7 +351,7 @@
     <Compile Include="DAL\ComposicaoDAO.cs" />
     <Compile Include="DAL\CorridaDAO.cs" />
     <Compile Include="DAL\HorarioPistaDAO.cs" />
-    <Compile Include="DAL\PagamentoDAO.cs" />
+    <Compile Include="DAL\LojaDAO.cs" />
     <Compile Include="DAL\PessoasDAO.cs" />
     <Compile Include="DAL\PistasDAO.cs" />
     <Compile Include="DAL\Singleton.cs" />
@@ -374,13 +374,17 @@
     <Compile Include="Migrations\201809151823004_requiredcar.Designer.cs">
       <DependentUpon>201809151823004_requiredcar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809161651410_addlojaremovepagamaneto.cs" />
+    <Compile Include="Migrations\201809161651410_addlojaremovepagamaneto.Designer.cs">
+      <DependentUpon>201809161651410_addlojaremovepagamaneto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Carro.cs" />
     <Compile Include="Models\ComposicaoCorrida.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\Corrida.cs" />
     <Compile Include="Models\HorarioPista.cs" />
-    <Compile Include="Models\Pagamento.cs" />
+    <Compile Include="Models\Loja.cs" />
     <Compile Include="Models\Pessoa.cs" />
     <Compile Include="Models\Pista.cs" />
     <Compile Include="Models\Previsao.cs" />
@@ -434,11 +438,10 @@
     <Content Include="Content\bootstrap-datepicker.min.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
-    <Content Include="Views\Pagamentoes\Create.cshtml" />
-    <Content Include="Views\Pagamentoes\Delete.cshtml" />
-    <Content Include="Views\Pagamentoes\Details.cshtml" />
-    <Content Include="Views\Pagamentoes\Edit.cshtml" />
-    <Content Include="Views\Pagamentoes\Index.cshtml" />
+    <Content Include="Views\Lojas\Create.cshtml" />
+    <Content Include="Views\Lojas\Details.cshtml" />
+    <Content Include="Views\Lojas\Edit.cshtml" />
+    <Content Include="Views\Lojas\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -461,6 +464,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809151823004_requiredcar.resx">
       <DependentUpon>201809151823004_requiredcar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809161651410_addlojaremovepagamaneto.resx">
+      <DependentUpon>201809161651410_addlojaremovepagamaneto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

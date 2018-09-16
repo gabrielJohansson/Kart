@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/Layout.cshtml";
     List<TabelaCarroPessoa> t = ViewBag.CarroPessoa;
     List<Pista> p = ViewBag.Pista;
-    List<Pagamento> pag = ViewBag.Pagamento;
+    
     DateTime[] dias = new DateTime[] { DateTime.Today.Date, DateTime.Today.Date.AddDays(1), DateTime.Today.Date.AddDays(2), DateTime.Today.Date.AddDays(3), DateTime.Today.Date.AddDays(4), DateTime.Today.Date.AddDays(5), DateTime.Today.Date.AddDays(6) };
 }
 <!-- Code to wire up your DatePicker -->
@@ -117,18 +117,7 @@
 
         </div>      
 
-        <div class="col-md-10">
-            <div class="row">
-
-                <div class="col-md-8">
-                    Escolha a Forma de Pagamento:
-                    @Html.DropDownList("pagamentoid", new SelectList(pag, "Id", "pagamento"))
-
-                </div>
-
-            </div>
-
-        </div>      
+       
 
         <div class="col-md-10">
                   

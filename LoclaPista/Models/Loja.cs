@@ -5,13 +5,16 @@ using System.Web;
 
 namespace LoclaPista.Models
 {
-    public class Pista
+    public class Loja
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public DateTime dtaCadastro { get; set; }
-        public byte Ativo { get; set; }
-        public Loja loja { get; set; }
+        public Pessoa Dono { get; set; }
 
+
+        public  Loja()
+        {
+            Pessoa Dono = new Pessoa();
+        }
     }
 }

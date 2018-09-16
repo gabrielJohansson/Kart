@@ -19,6 +19,7 @@ namespace LoclaPista.Models
         public string ComposicaoGuid { get; set; }
         public double Preco { get; set; }
 
-        public Pagamento pagamento { get; set; }
+        public Loja loja { get; set; }
+
     }
 }

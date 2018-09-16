@@ -65,7 +65,7 @@ namespace LoclaPista.DAL
         }
         public static List<Corrida> ProcurarbyComposicaoPessoa(int? id)
         {
-            return ctx.Corridas.Include("Responsavel").Include("Pista").Include("pagamento").Where(p => p.Responsavel.Id == id).ToList();
+            return ctx.Corridas.Include("Responsavel").Include("Pista").Where(p => p.Responsavel.Id == id).ToList();
         }
         public static List<Corrida> ProcurarbyComposicaoCarro(string id)
         {
@@ -89,12 +89,9 @@ namespace LoclaPista.DAL
         public static List<Corrida> ProcurarbyAtivo()
         {
             DateTime id = DateTime.Now;
-            return ctx.Corridas.Include("Responsavel").Include("Pista").Include("pagamento").Where(p => p.DtaCorrida > id && p.DtaCadastro==p.DtaCancelamento).ToList();
+            return ctx.Corridas.Include("Responsavel").Include("Pista").Where(p => p.DtaCorrida > id && p.DtaCadastro==p.DtaCancelamento).ToList();
         }
 
-        public static List<Corrida> ProcurarbyPagamento(int id)
-        {
-            return ctx.Corridas.Include("Responsavel").Include("Pista").Include("pagamento").Where(p => p.pagamento.Id==id).ToList();
-        }
+      
     }
 }

@@ -40,7 +40,7 @@ namespace LoclaPista.Controllers
         {
             ViewBag.Pista = PistasDAO.ListarTodasAtivas();
             ViewBag.CarroPessoa = CarroPessoaDao.ListarTodos();
-            ViewBag.Pagamento = PagamentoDAO.ListarTodos();
+           
             return View();
         }
 
@@ -108,7 +108,7 @@ namespace LoclaPista.Controllers
                             corrida.DtaCorrida = dta;
                             corrida.DtaCancelamento = corrida.DtaCadastro;
                             corrida.Responsavel = PessoasDAO.ProcurarbyId(id);
-                            corrida.pagamento = PagamentoDAO.ProcurarbyId(pagamentoid);
+                            
 
                             CorridaDAO.AdicionarNovo(corrida);
 
