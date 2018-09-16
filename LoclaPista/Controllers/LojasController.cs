@@ -84,6 +84,28 @@ namespace LoclaPista.Controllers
 
                         //Recupera ele na hora de entrar na loja,mudar o cookie ao trocar de loja
 
+                        //Recupera ele assim----
+
+
+                        ////Assuming user comes back after several hours. several < 12.
+                        ////Read the cookie from Request.
+                        //HttpCookie myCookie = Request.Cookies["myCookie"];
+                        //if (myCookie == null)
+                        //{
+                        //    //No cookie found or cookie expired.
+                        //    //Handle the situation here, Redirect the user or simply return;
+                        //}
+
+                        ////ok - cookie is found.
+                        ////Gracefully check if the cookie has the key-value as expected.
+                        //if (!string.IsNullOrEmpty(myCookie.Values["userid"]))
+                        //{
+                        //    string userId = myCookie.Values["userid"].ToString();
+                        //    //Yes userId is found. Mission accomplished.
+                        //}
+
+
+
 
 
                         return RedirectToAction("Index");
