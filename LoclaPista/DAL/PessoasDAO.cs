@@ -53,6 +53,11 @@ namespace LoclaPista.DAL
             return ctx.Pessoas.Where(p=>p.Cpf.Equals(cpf)).FirstOrDefault();
         }
 
+        public static Pessoa ProcurarbyCpfSemLoja(string cpf)
+        {
+            return ctx.Pessoas.Where(p => p.Cpf.Equals(cpf)).FirstOrDefault();
+        }
+
         public static Pessoa Login(Pessoa u)
         {
             return ctx.Pessoas.FirstOrDefault(X => X.Senha.Equals(u.Senha) && X.Cpf.Equals(u.Cpf));

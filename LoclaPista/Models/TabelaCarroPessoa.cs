@@ -23,5 +23,6 @@ namespace LoclaPista.Models
                 return string.Format("{0} /{1}", p.Nome, c.placa);
             }
         }
+        public Loja loja;
     }
 }

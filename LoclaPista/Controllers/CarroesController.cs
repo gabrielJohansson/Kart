@@ -18,7 +18,8 @@ namespace LoclaPista.Controllers
         // GET: Carroes
         public ActionResult Index()
         {
-            return View(CarrosDAO.ListarTodos());
+            HttpCookie myCookie = Request.Cookies["Loja"];
+            return View(CarrosDAO.ListarTodos(Int32.Parse(myCookie.Values["lojaId"])));
         }
 
         // GET: Carroes/Details/5
@@ -49,6 +50,8 @@ namespace LoclaPista.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,placa,modelo,marca,cor")] Carro carro,int?id)
         {
+            HttpCookie myCookie = Request.Cookies["Loja"];
+            carro.loja = LojaDAO.ProcurarbyId(Int32.Parse(myCookie.Values["lojaId"]));
             if (ModelState.IsValid)
             {
                 Carro teste = CarrosDAO.ProcurarbyPlaca(carro.placa);

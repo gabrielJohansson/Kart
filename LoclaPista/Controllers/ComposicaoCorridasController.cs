@@ -49,7 +49,7 @@ namespace LoclaPista.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int carroid, int carroid2, int carroid3, int carroid4,int pagamentoid,int pistaid,string data,int id, ComposicaoCorrida composicaoCorrida)
+        public ActionResult Create(int carroid, int carroid2, int carroid3, int carroid4,int pistaid,string data,int id, ComposicaoCorrida composicaoCorrida)
         {
             try
             {

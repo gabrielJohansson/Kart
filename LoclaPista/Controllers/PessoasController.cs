@@ -49,6 +49,9 @@ namespace LoclaPista.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Nome,Senha,Cpf")] Pessoa pessoa)
         {
+            HttpCookie myCookie = Request.Cookies["Loja"];
+            Loja l=LojaDAO.ProcurarbyId(Int32.Parse(myCookie.Values["lojaId"]));
+
             pessoa.Adm = 0;
             pessoa.dtaCadastro = DateTime.Now;
             pessoa.Status = 1;
@@ -56,10 +59,19 @@ namespace LoclaPista.Controllers
             {
                 pessoa.Cpf = Utils.Utilidades.RemoveNaoNumericos(pessoa.Cpf);
                
-                Pessoa teste = PessoasDAO.ProcurarbyCpf(pessoa.Cpf);
+                Pessoa teste = PessoaLojaDAO.ProcurarbyCpf(pessoa.Cpf, Int32.Parse(myCookie.Values["lojaId"]));
                 if (teste == null)
                 {
                     PessoasDAO.AdicionarNovo(pessoa);
+
+                    pessoa = PessoasDAO.ProcurarbyCpfSemLoja(pessoa.Cpf);
+
+                    PessoaLoja pes = new PessoaLoja();
+                    pes.loja = l;
+                    pes.pessoa = pessoa;
+                    PessoaLojaDAO.AdicionarNovo(pes);
+
+
                     FormsAuthentication.SetAuthCookie(pessoa.Cpf + "|" + pessoa.Id + "|" + pessoa.Adm, true);
                     return RedirectToAction("Index", "Home");
                 }
@@ -133,7 +145,8 @@ namespace LoclaPista.Controllers
             if (Request.IsAuthenticated)
             {
                 FormsAuthentication.SignOut();
-                return RedirectToAction("Index", "Home");
+                Response.Cookies["Loja"].Expires = DateTime.Now.AddDays(-1);
+                return RedirectToAction("Index", "Lojas");
             }
             return View();
         }
@@ -141,8 +154,9 @@ namespace LoclaPista.Controllers
         [HttpPost]
         public ActionResult Login(Pessoa u)
         {
+            HttpCookie myCookie = Request.Cookies["Loja"];
             u.Cpf = Utils.Utilidades.RemoveNaoNumericos(u.Cpf);
-            u = PessoasDAO.Login(u);
+            u = PessoaLojaDAO.Login(u, Int32.Parse(myCookie.Values["lojaId"]));
             if (u != null)
             {
                 //Logarr

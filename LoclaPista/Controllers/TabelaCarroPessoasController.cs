@@ -40,8 +40,9 @@ namespace LoclaPista.Controllers
         // GET: TabelaCarroPessoas/Create
         public ActionResult Create()
         {
-            ViewBag.Carro = CarrosDAO.ListarTodos();
-            ViewBag.Pessoa = PessoasDAO.ListarTodasClientes();
+            HttpCookie myCookie = Request.Cookies["Loja"];
+            ViewBag.Carro = CarrosDAO.ListarTodos(Int32.Parse(myCookie.Values["lojaId"]));
+            ViewBag.Pessoa = PessoaLojaDAO.ListarTodasClientes(Int32.Parse(myCookie.Values["lojaId"]));
             return View();
         }
 

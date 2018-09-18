@@ -17,7 +17,8 @@ namespace LoclaPista.Controllers
         // GET: Pistas
         public ActionResult Index()
         {
-            return View(PistasDAO.ListarTodas());
+            HttpCookie myCookie = Request.Cookies["Loja"];
+            return View(PistasDAO.ListarTodas(Int32.Parse(myCookie.Values["lojaId"])));
         }
 
         // GET: Pistas/Details/5
@@ -48,6 +49,11 @@ namespace LoclaPista.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Nome,dtaCadastro,Ativo")] Pista pista)
         {
+            HttpCookie myCookie = Request.Cookies["Loja"];
+            
+           
+            pista.loja=  LojaDAO.ProcurarbyId(Int32.Parse(myCookie.Values["lojaId"]));
+            
             pista.Ativo = 1;
             pista.dtaCadastro = DateTime.Now;
             if (ModelState.IsValid)

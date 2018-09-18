@@ -22,5 +22,9 @@ namespace LoclaPista.DAL
         {
             return ctx.Lojas.Where(p => p.Nome.Equals(nome)).FirstOrDefault();
         }
+             public static Loja ProcurarbyId(int? id)
+        {
+            return ctx.Lojas.Find(id);
+        }
     }
-}
+    }

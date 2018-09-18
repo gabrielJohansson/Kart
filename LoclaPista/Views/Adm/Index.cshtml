@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LoclaPista.Models.Pagamento>
+﻿
 @using LoclaPista.Models
 @{
     ViewBag.Title = "Index";
@@ -133,9 +133,6 @@
         <th>
             Data da Corrida
         </th>
-        <th>
-            Meio de Pagamento
-        </th>
         <th></th>
     </tr>
 
@@ -156,10 +153,7 @@
             </td>
             <td>
                 @cor[i].DtaCorrida
-            </td>
-            <td>
-                @cor[i].pagamento.pagamento
-            </td>
+            </td>          
             <td>
                 @Html.ActionLink("Ver Composição", "Details", new { id = cor[i].Id})               
             </td>
@@ -228,23 +222,4 @@
 
 </table>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.pagamento)
-        </th>
-       
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.pagamento)
-            </td>
-          
-        </tr>
-    }
-
-</table>
 

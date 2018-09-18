@@ -33,6 +33,6 @@ namespace LoclaPista.Models
         public string Cpf { get; set; }
         public DateTime dtaCadastro { get; set; }
         public byte Status { get; set; }
-
+       
     }
 }

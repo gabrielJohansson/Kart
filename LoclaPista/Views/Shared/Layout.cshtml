@@ -1,4 +1,7 @@
 ﻿<!DOCTYPE html>
+@{
+    HttpCookie myCookie = Request.Cookies["Loja"];
+}
 
 <html>
 <head>
@@ -84,29 +87,31 @@
 
 
         @* -------------------------------- *@
-        @if (!Request.IsAuthenticated)
+        @if (myCookie != null)
         {
+            if (!Request.IsAuthenticated && myCookie.Values["lojaId"] != null)
+            {
             <div class="form-inline my-2 my-lg-0">
                 @Html.ActionLink("Login - ", "Login", "Pessoas", null, new { @class = "btn btn-secondary my-2 my-sm-0" })
             </div>
-        }
-        /////
-        else
-        {
+            }
+            /////
+            else
+            {
 
             <div class="form-inline my-2 my-lg-0">
                 @Html.ActionLink("Deslogar - ", "Login", "Pessoas", null, new { @class = "btn btn-secondary my-2 my-sm-0" })
             </div>
-            //isso vai acontecer caso não seja adm
-            //[0]vai pegar cpf,[1]vai pegar o id,[2]vai pegar o adm
-            if (Convert.ToInt32(HttpContext.Current.User.Identity.Name.Split('|')[2]) == 0)
-            {
+                //isso vai acontecer caso não seja adm
+                //[0]vai pegar cpf,[1]vai pegar o id,[2]vai pegar o adm
+                if (Convert.ToInt32(HttpContext.Current.User.Identity.Name.Split('|')[2]) == 0)
+                {
                 <div class="form-inline my-2 my-lg-0">
                     @Html.ActionLink("Alugar Pista ", "Create", "ComposicaoCorridas", new { id = Convert.ToInt32(HttpContext.Current.User.Identity.Name.Split('|')[1]) }, new { @class = "btn btn-secondary my-2 my-sm-0" })
                 </div>
-            }
+                }
 
-            ////////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////////
 
             @*if (Convert.ToInt32(HttpContext.Current.User.Identity.Name.Split('|')[2]) == 1)
             {
@@ -114,8 +119,8 @@
                     @Html.ActionLink("Detalhes de Tudo", "Lista", "Corridas", new { id = Convert.ToInt32(HttpContext.Current.User.Identity.Name.Split('|')[1]) }, new { @class = "btn btn-secondary my-2 my-sm-0" })
                 </div>
             }*@
+            }
         }
-
 
         @* --------------------------------------- *@
     </nav>

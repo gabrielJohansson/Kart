@@ -18,6 +18,7 @@ namespace LoclaPista.Controllers
         // GET: Home
         public ActionResult Index(int?id)
         {
+            HttpCookie myCookie = Request.Cookies["Loja"];
             string url = "http://servicos.cptec.inpe.br/XML/cidade/7dias/227/previsao.xml";
 
             WebClient client = new WebClient();
@@ -35,7 +36,7 @@ namespace LoclaPista.Controllers
 
             if ( id == null)
             {
-                return View(HorarioPistaDAO.ListarTodos());
+                return View(HorarioPistaDAO.ListarTodos(Int32.Parse(myCookie.Values["lojaId"])));
 
             }
             DateTime data= DateTime.Today.Date;

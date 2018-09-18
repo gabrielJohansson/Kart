@@ -12,9 +12,9 @@ namespace LoclaPista.DAL
         private static Context ctx = Singleton.Instance.Context;
 
 
-        public static List<Pista> ListarTodas()
+        public static List<Pista> ListarTodas(int id)
         {
-            return ctx.Pistas.ToList();
+            return ctx.Pistas.Where(p => p.loja.Id == id).ToList();
         }
         public static List<Pista> ListarTodasAtivas()
         {

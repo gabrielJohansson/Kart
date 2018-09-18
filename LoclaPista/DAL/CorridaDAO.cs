@@ -81,15 +81,15 @@ namespace LoclaPista.DAL
         {
             return ctx.Corridas.Where(p => p.DtaCorrida == id).ToList();
         }
-        public static Corrida ProcurarbyDtaCorrida(DateTime id)
+        public static Corrida ProcurarbyDtaCorrida(DateTime id,int loja)
         {
-            return ctx.Corridas.Where(p => p.DtaCorrida == id).FirstOrDefault();
+            return ctx.Corridas.Where(p => p.DtaCorrida == id && p.loja.Id==loja).FirstOrDefault();
         }
 
-        public static List<Corrida> ProcurarbyAtivo()
+        public static List<Corrida> ProcurarbyAtivo(int idl)
         {
             DateTime id = DateTime.Now;
-            return ctx.Corridas.Include("Responsavel").Include("Pista").Where(p => p.DtaCorrida > id && p.DtaCadastro==p.DtaCancelamento).ToList();
+            return ctx.Corridas.Include("Responsavel").Include("Pista").Where(p => p.DtaCorrida > id && p.DtaCadastro==p.DtaCancelamento && p.loja.Id == idl).ToList();
         }
 
       

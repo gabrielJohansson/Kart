@@ -20,6 +20,8 @@ namespace LoclaPista.Models
         public DbSet<HorarioPista> HorarioPista { get; set; }
         public DbSet<Loja> Lojas { get; set; }
 
+        public DbSet<PessoaLoja> ClienteLoja { get; set; }
+
         
     }
 }

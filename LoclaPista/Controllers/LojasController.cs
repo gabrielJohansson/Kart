@@ -22,20 +22,6 @@ namespace LoclaPista.Controllers
             return View(db.Lojas.ToList());
         }
 
-        // GET: Lojas/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Loja loja = db.Lojas.Find(id);
-            if (loja == null)
-            {
-                return HttpNotFound();
-            }
-            return View(loja);
-        }
 
         // GET: Lojas/Create
         public ActionResult Create()
@@ -49,7 +35,7 @@ namespace LoclaPista.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome")] Loja loja,Pessoa p)
+        public ActionResult Create([Bind(Include = "Id,Nome")] Loja loja, Pessoa p)
         {
             p.Adm = 1;
             p.dtaCadastro = DateTime.Now;
@@ -59,10 +45,11 @@ namespace LoclaPista.Controllers
 
                 p.Cpf = Utils.Utilidades.RemoveNaoNumericos(p.Cpf);
 
-                Pessoa teste = PessoasDAO.ProcurarbyCpf(p.Cpf);
+                Pessoa teste = PessoasDAO.ProcurarbyCpfSemLoja(p.Cpf);
                 if (teste == null)
                 {
                     PessoasDAO.AdicionarNovo(p);
+                    p = PessoasDAO.ProcurarbyCpf(p.Cpf);
                     loja.Dono = p;
                     FormsAuthentication.SetAuthCookie(loja.Dono.Cpf + "|" + loja.Dono.Id + "|" + loja.Dono.Adm, true);
                     Loja l = LojaDAO.ProcurarbyNome(loja.Nome);
@@ -70,44 +57,29 @@ namespace LoclaPista.Controllers
                     {
                         LojaDAO.AdicionarNovo(loja);
 
-
+                        
                         //Cria o Cookie da Loja...
 
                         //create a cookie
-                        HttpCookie myCookie = new HttpCookie("Loja");
+                        HttpCookie Loja = new HttpCookie("Loja");
                         l = LojaDAO.ProcurarbyNome(loja.Nome);
+
+
+                        PessoaLoja pl = new PessoaLoja();
+
+                        pl.loja = l;
+                        pl.pessoa = p;
+
+                        PessoaLojaDAO.AdicionarNovo(pl);
+
+
                         //Add key-values in the cookie
-                        myCookie.Values.Add("lojaId", l.Id.ToString());
-                        myCookie.Expires = DateTime.Now.AddYears(1);
+                        Loja.Values.Add("lojaId", l.Id.ToString());
+                        Loja.Expires = DateTime.Now.AddYears(1);
                         //Most important, write the cookie to client.
-                        Response.Cookies.Add(myCookie);
+                        Response.Cookies.Add(Loja);
 
                         //Recupera ele na hora de entrar na loja,mudar o cookie ao trocar de loja
-
-                        //Recupera ele assim----
-
-
-                        ////Assuming user comes back after several hours. several < 12.
-                        ////Read the cookie from Request.
-                        //HttpCookie myCookie = Request.Cookies["myCookie"];
-                        //if (myCookie == null)
-                        //{
-                        //    //No cookie found or cookie expired.
-                        //    //Handle the situation here, Redirect the user or simply return;
-                        //}
-
-                        ////ok - cookie is found.
-                        ////Gracefully check if the cookie has the key-value as expected.
-                        //if (!string.IsNullOrEmpty(myCookie.Values["userid"]))
-                        //{
-                        //    string userId = myCookie.Values["userid"].ToString();
-                        //    //Yes userId is found. Mission accomplished.
-                        //}
-
-
-
-
-
                         return RedirectToAction("Index");
                     }
                     ModelState.AddModelError("", "Loja já Cadastrada");
@@ -116,76 +88,23 @@ namespace LoclaPista.Controllers
                 ModelState.AddModelError("", "Usuário já Cadastrado");
                 return View();
 
-               
+
             }
 
             return View(loja);
         }
 
-        // GET: Lojas/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Entrar(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Loja loja = db.Lojas.Find(id);
-            if (loja == null)
-            {
-                return HttpNotFound();
-            }
-            return View(loja);
+            HttpCookie Loja = new HttpCookie("Loja");
+            Loja.Values.Add("lojaId", id.ToString());
+            Loja.Expires = DateTime.Now.AddYears(1);
+            Response.Cookies.Add(Loja);
+            return RedirectToAction("Index","Home");
         }
 
-        // POST: Lojas/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome")] Loja loja)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(loja).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(loja);
-        }
+       
+     
 
-        // GET: Lojas/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Loja loja = db.Lojas.Find(id);
-            if (loja == null)
-            {
-                return HttpNotFound();
-            }
-            return View(loja);
-        }
-
-        // POST: Lojas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Loja loja = db.Lojas.Find(id);
-            db.Lojas.Remove(loja);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

@@ -17,5 +17,6 @@ namespace LoclaPista.Models
         public string marca { get; set; }
         [Required(ErrorMessage = "Campo obrigatório!")]
         public string cor { get; set; }
+        public Loja loja { get; set; }
     }
 }

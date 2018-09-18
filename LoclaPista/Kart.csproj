@@ -147,9 +147,11 @@
     <Content Include="Content\bootstrap-datepicker3.min.css" />
     <Content Include="Content\bootstrap-datepicker3.standalone.css" />
     <Content Include="Content\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery-ui-timepicker-addon.css" />
     <Content Include="Content\jquery-ui-timepicker-addon.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -191,13 +193,23 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-moment.js" />
     <Content Include="Scripts\angular-moment.min.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\angular-moment.min.js.map" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\i18n\jquery-ui-timepicker-addon-i18n.js" />
     <Content Include="Scripts\i18n\jquery-ui-timepicker-addon-i18n.min.js" />
     <Content Include="Scripts\i18n\jquery-ui-timepicker-af.js" />
@@ -326,6 +338,7 @@
     <Content Include="Scripts\locales\bootstrap-datepicker.vi.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
@@ -352,6 +365,7 @@
     <Compile Include="DAL\CorridaDAO.cs" />
     <Compile Include="DAL\HorarioPistaDAO.cs" />
     <Compile Include="DAL\LojaDAO.cs" />
+    <Compile Include="DAL\PessoaLojaDAO.cs" />
     <Compile Include="DAL\PessoasDAO.cs" />
     <Compile Include="DAL\PistasDAO.cs" />
     <Compile Include="DAL\Singleton.cs" />
@@ -378,6 +392,10 @@
     <Compile Include="Migrations\201809161651410_addlojaremovepagamaneto.Designer.cs">
       <DependentUpon>201809161651410_addlojaremovepagamaneto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809181229454_pessoaloja.cs" />
+    <Compile Include="Migrations\201809181229454_pessoaloja.Designer.cs">
+      <DependentUpon>201809181229454_pessoaloja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Carro.cs" />
     <Compile Include="Models\ComposicaoCorrida.cs" />
@@ -386,6 +404,7 @@
     <Compile Include="Models\HorarioPista.cs" />
     <Compile Include="Models\Loja.cs" />
     <Compile Include="Models\Pessoa.cs" />
+    <Compile Include="Models\PessoaLoja.cs" />
     <Compile Include="Models\Pista.cs" />
     <Compile Include="Models\Previsao.cs" />
     <Compile Include="Models\TabelaCarroPessoa.cs" />
@@ -439,9 +458,8 @@
     <Content Include="Content\bootstrap-datepicker.css.map" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
     <Content Include="Views\Lojas\Create.cshtml" />
-    <Content Include="Views\Lojas\Details.cshtml" />
-    <Content Include="Views\Lojas\Edit.cshtml" />
     <Content Include="Views\Lojas\Index.cshtml" />
+    <Content Include="Views\Lojas\Entrar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -467,6 +485,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809161651410_addlojaremovepagamaneto.resx">
       <DependentUpon>201809161651410_addlojaremovepagamaneto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809181229454_pessoaloja.resx">
+      <DependentUpon>201809181229454_pessoaloja.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

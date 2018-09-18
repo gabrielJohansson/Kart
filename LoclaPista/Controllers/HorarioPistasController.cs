@@ -17,7 +17,8 @@ namespace LoclaPista.Controllers
         // GET: HorarioPistas
         public ActionResult Index()
         {
-            return View(HorarioPistaDAO.ListarTodos());
+            HttpCookie myCookie = Request.Cookies["Loja"];
+            return View(HorarioPistaDAO.ListarTodos(Int32.Parse(myCookie.Values["lojaId"])));
         }
 
         // GET: HorarioPistas/Details/5

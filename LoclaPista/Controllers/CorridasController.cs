@@ -47,10 +47,12 @@ namespace LoclaPista.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,DtaCadastro,DtaCorrida,DtaCancelamento,Preco")] Corrida corrida)
         {
+            HttpCookie myCookie = Request.Cookies["Loja"];
+            corrida.loja = LojaDAO.ProcurarbyId(Int32.Parse(myCookie.Values["lojaId"]));
             if (ModelState.IsValid)
             {
-                Corrida teste = CorridaDAO.ProcurarbyDtaCorrida(corrida.DtaCorrida);
-                Corrida teste1 = CorridaDAO.ProcurarbyDtaCorrida(corrida.DtaCorrida.AddHours(1));
+                Corrida teste = CorridaDAO.ProcurarbyDtaCorrida(corrida.DtaCorrida, Int32.Parse(myCookie.Values["lojaId"]));
+                Corrida teste1 = CorridaDAO.ProcurarbyDtaCorrida(corrida.DtaCorrida.AddHours(1), Int32.Parse(myCookie.Values["lojaId"]));
                 if (teste != null && teste1 != null)
                 {
                     CorridaDAO.AdicionarNovo(corrida);
