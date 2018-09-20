@@ -10,6 +10,7 @@ using System.Web.Security;
 using LoclaPista.DAL;
 using LoclaPista.Models;
 
+
 namespace LoclaPista.Controllers
 {
     public class LojasController : Controller
@@ -19,7 +20,14 @@ namespace LoclaPista.Controllers
         // GET: Lojas
         public ActionResult Index()
         {
-            return View(db.Lojas.ToList());
+            if (Request.IsAuthenticated)
+            {
+                if(Convert.ToInt32(System.Web.HttpContext.Current.User.Identity.Name.Split('|')[2])==1)
+                {
+                    return View(LojaDAO.Listar(Convert.ToInt32(System.Web.HttpContext.Current.User.Identity.Name.Split('|')[1])));
+                }
+             }
+            return View(LojaDAO.Listar());
         }
 
 

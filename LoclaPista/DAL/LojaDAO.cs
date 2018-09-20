@@ -26,5 +26,15 @@ namespace LoclaPista.DAL
         {
             return ctx.Lojas.Find(id);
         }
+
+        public static List<Loja> Listar()
+        {
+            return ctx.Lojas.ToList();
+        }
+
+        public static List<Loja> Listar(int id)
+        {
+            return ctx.Lojas.Where(p=>p.Dono.Id==id).ToList();
+        }
     }
     }

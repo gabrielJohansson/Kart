@@ -11,9 +11,9 @@ namespace LoclaPista.DAL
         private static Context ctx = Singleton.Instance.Context;
 
 
-        public static List<TabelaCarroPessoa> ListarTodos()
+        public static List<TabelaCarroPessoa> ListarTodos(int id)
         {
-            return ctx.CarroPessoa.Include("p").Include("c").ToList();
+            return ctx.CarroPessoa.Include("p").Include("c").Where(p => p.c.loja.Id == id).ToList();
         }
 
         public static TabelaCarroPessoa ProcurarbyId(int? id)

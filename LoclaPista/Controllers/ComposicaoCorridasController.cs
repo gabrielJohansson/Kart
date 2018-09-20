@@ -38,8 +38,9 @@ namespace LoclaPista.Controllers
         // GET: ComposicaoCorridas/Create
         public ActionResult Create()
         {
+            HttpCookie myCookie = Request.Cookies["Loja"];
             ViewBag.Pista = PistasDAO.ListarTodasAtivas();
-            ViewBag.CarroPessoa = CarroPessoaDao.ListarTodos();
+            ViewBag.CarroPessoa = CarroPessoaDao.ListarTodos(Int32.Parse(myCookie.Values["lojaId"]));
            
             return View();
         }

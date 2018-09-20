@@ -22,7 +22,7 @@ namespace LoclaPista.Controllers
             ViewBag.Corridas = CorridaDAO.ProcurarbyAtivo(Int32.Parse(myCookie.Values["lojaId"]));
             //fazer um details
             // ViewBag.Composicao=ComposicaoDAO.ListarTodos();
-            ViewBag.CarroPessoa = CarroPessoaDao.ListarTodos();
+            ViewBag.CarroPessoa = CarroPessoaDao.ListarTodos(Int32.Parse(myCookie.Values["lojaId"]));
             ViewBag.Horario = HorarioPistaDAO.ListarTodos(Int32.Parse(myCookie.Values["lojaId"]));
 
             return View();
