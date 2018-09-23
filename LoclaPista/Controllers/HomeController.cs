@@ -73,7 +73,7 @@ namespace LoclaPista.Controllers
 
                     break;
             }
-            return View(HorarioPistaDAO.ProcurarbyData(data));
+            return View(HorarioPistaDAO.ProcurarbyData(data, Int32.Parse(myCookie.Values["lojaId"])));
             
         }
     }

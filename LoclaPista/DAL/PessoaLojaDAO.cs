@@ -17,7 +17,7 @@ namespace LoclaPista.DAL
         }
         public static Pessoa ProcurarbyCpf(string cpf, int loja)
         {
-            PessoaLoja pe=ctx.ClienteLoja.Where(p => p.pessoa.Cpf.Equals(cpf) && p.loja.Id == loja).FirstOrDefault();
+            PessoaLoja pe=ctx.ClienteLoja.Include("pessoa").Where(p => p.pessoa.Cpf.Equals(cpf) && p.loja.Id == loja).FirstOrDefault();
             if(pe!=null)
             {
                return  pe.pessoa;
@@ -28,7 +28,7 @@ namespace LoclaPista.DAL
 
         public static List<Pessoa> ListarTodasClientes(int id)
         {
-            List<PessoaLoja> pe = ctx.ClienteLoja.Where(p => p.pessoa.Adm == 0 && p.loja.Id == id).ToList();
+            List<PessoaLoja> pe = ctx.ClienteLoja.Include("pessoa").Where(p => p.pessoa.Adm == 0 && p.loja.Id == id).ToList();
 
            
             if (pe != null)
@@ -45,15 +45,15 @@ namespace LoclaPista.DAL
 
         public static Pessoa Login(Pessoa u, int loja)
         {
-            
+           
 
-                PessoaLoja pe = ctx.ClienteLoja.FirstOrDefault(X => X.pessoa.Senha.Equals(u.Senha) && X.pessoa.Cpf.Equals(u.Cpf) && X.loja.Id == loja);
+                PessoaLoja pe = ctx.ClienteLoja.Include("pessoa").FirstOrDefault(X => X.pessoa.Senha.Equals(u.Senha) && X.pessoa.Cpf.Equals(u.Cpf) && X.loja.Id == loja);
                 if (pe != null)
                 {
                     return pe.pessoa;
                 }
                 return null;
-           
+         
         }
     }
 }

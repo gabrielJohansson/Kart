@@ -89,7 +89,7 @@ namespace LoclaPista.DAL
         public static List<Corrida> ProcurarbyAtivo(int idl)
         {
             DateTime id = DateTime.Now;
-            return ctx.Corridas.Include("Responsavel").Include("Pista").Where(p => p.DtaCorrida > id && p.DtaCadastro==p.DtaCancelamento && p.loja.Id == idl).ToList();
+            return ctx.Corridas.Include("Responsavel").Include("Pista").Where(p => p.DtaCorrida > id && p.DtaCadastro==p.DtaCancelamento && p.Pista.loja.Id == idl).ToList();
         }
 
       

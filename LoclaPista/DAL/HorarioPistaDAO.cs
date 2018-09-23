@@ -50,9 +50,9 @@ namespace LoclaPista.DAL
         }
 
         //passa so a data
-        public static List<HorarioPista> ProcurarbyData(DateTime id)
+        public static List<HorarioPista> ProcurarbyData(DateTime id,int loja)
         {
-            return ctx.HorarioPista.Where(p => EntityFunctions.TruncateTime(p.Hora_inicial) == id.Date).ToList();
+            return ctx.HorarioPista.Include("pista").Where(p => EntityFunctions.TruncateTime(p.Hora_inicial) == id.Date && p.pista.loja.Id == loja).ToList();
         }
         //passa td
         public static List<HorarioPista> ProcurarbyDataHora(DateTime id)

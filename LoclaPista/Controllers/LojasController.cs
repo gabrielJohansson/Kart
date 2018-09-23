@@ -88,7 +88,7 @@ namespace LoclaPista.Controllers
                         Response.Cookies.Add(Loja);
 
                         //Recupera ele na hora de entrar na loja,mudar o cookie ao trocar de loja
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Index","Home");
                     }
                     ModelState.AddModelError("", "Loja já Cadastrada");
                     return View();
