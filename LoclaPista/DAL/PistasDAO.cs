@@ -16,9 +16,9 @@ namespace LoclaPista.DAL
         {
             return ctx.Pistas.Where(p => p.loja.Id == id).ToList();
         }
-        public static List<Pista> ListarTodasAtivas(int id)
+        public static List<Pista> ListarTodasAtivas()
         {
-            return ctx.Pistas.Where(p=>p.Ativo==1 && p.loja.Id==id).ToList();
+            return ctx.Pistas.Where(p=>p.Ativo==1).ToList();
         }
         public static Pista ProcurarbyId(int? id)
         {

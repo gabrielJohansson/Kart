@@ -39,7 +39,7 @@ namespace LoclaPista.Controllers
         public ActionResult Create()
         {
             HttpCookie myCookie = Request.Cookies["Loja"];
-            ViewBag.Pista = PistasDAO.ListarTodasAtivas(Int32.Parse(myCookie.Values["lojaId"]));
+            ViewBag.Pista = PistasDAO.ListarTodasAtivas();
             ViewBag.CarroPessoa = CarroPessoaDao.ListarTodos(Int32.Parse(myCookie.Values["lojaId"]));
            
             return View();
